@@ -14,9 +14,9 @@ import UserInfo from "./scripts/UserInfo.js";
   const loading = document.querySelector("#fountainG");
 
   let credentials = {
-    origin: 'https://praktikum.tk',
-    path: 'cohort9',
-    token : '8efc6ee1-5d62-4d80-bf95-67649358dfce'
+    baseUrl : 'http://localhost:3000',
+    email: "test@mail.ru",
+    password: "testtest",
   };
   const api = new Api(credentials);
 
@@ -121,15 +121,19 @@ import UserInfo from "./scripts/UserInfo.js";
   };
 
   const serverData = () => {
-    const pr1 = api.getUserInfo()
+    const pr1 = api.loginUser()
+      .then(() => { console.log('Успешная авторизация') })
+      .catch((err) => console.log(err));
+
+    const pr2 = api.getUserInfo()
       .then((userInfo) => { return userInfo })
       .catch((err) => console.log(err));
 
-    const pr2 = api.getCards()
+    const pr3 = api.getCards()
       .then((cards) => { return cards })
       .catch((err) => console.log(err));
 
-    Promise.all([pr1, pr2]).then((data) => {
+    Promise.all([pr1, pr2, pr3]).then((data) => {
       const value = { cards: {}, userInfo: {} }
       value.cards = data[1];
       value.userInfo = data[0];
