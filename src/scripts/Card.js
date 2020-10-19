@@ -34,11 +34,6 @@ export default class Card {
               </div>
           </div>`);
 
-    if (this.userId !== this.cardInf.owner._id) {
-      const button = template.querySelector('.place-card__delete-icon');
-      button.closest("div").removeChild(button);
-    }
-
     template.querySelector(".place-card__likes-count").textContent = data.likes.length;
     template.querySelector(".place-card__name").textContent = data.name;
     template.querySelector(".place-card__image").style.backgroundImage = `url(${data.link})`;
@@ -47,7 +42,10 @@ export default class Card {
     template.querySelector(".place-card__image").setAttribute('name', data.name);
     template.querySelector(".place-card__image").setAttribute('id', data._id);
     this.likeCount = template.querySelector(".place-card__likes-count");
-    if (this.cardInf.likes.find(item => item._id === this.userId)) { template.querySelector(".place-card__like-icon").classList.add('place-card__like-icon_liked'); };
+    if (this.cardInf.likes.find(id => id === this.userId)) { template.querySelector(".place-card__like-icon").classList.add('place-card__like-icon_liked');
+    const button = template.querySelector('.place-card__delete-icon');
+    button.closest("div").removeChild(button); 
+    };
     return template;
   }
 

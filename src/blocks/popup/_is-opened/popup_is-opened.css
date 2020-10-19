@@ -10,7 +10,6 @@
 
 div.popup_is-opened{
   display: flex;
-  animation: translate 1s linear;
 }
 /* div.popup_is-opened:focus{
   transform: translateY(200px);

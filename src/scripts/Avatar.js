@@ -13,11 +13,12 @@ export default class Avatar {
 
   setAvatar(event, button) {
     event.preventDefault();
-    const data = { avatar: this.linkPhoto, postfix: `${this.postfix}`, avatar: this.linkPhoto.value, method: this.method };
+    const data = { avatar: this.linkPhoto.value };
     this.popupOpenClose.loadingSet(button);
-    this.api.editData(data).then((data) => this.updateAvatar(data))
-      .then((data) => { this.popupOpenClose.loadingEnd({ button, form: this.formAvatar }); this.linkPhoto.value = ''; })
-      .catch((err) => console.log(err));
+    this.api.setAvatar(data)
+    .then((data) => this.updateAvatar(data.data))
+    .then((data) => { this.popupOpenClose.loadingEnd({ button, form: this.formAvatar }); this.linkPhoto.value = ''; })
+    .catch((err) => console.log(err));
   }
 
   updateAvatar(data) {

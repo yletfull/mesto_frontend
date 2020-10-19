@@ -135,10 +135,10 @@ import UserInfo from "./scripts/UserInfo.js";
 
     Promise.all([pr1, pr2, pr3]).then((data) => {
       const value = { cards: {}, userInfo: {} }
-      value.cards = data[1];
-      value.userInfo = data[0];
-
+      value.cards = data[2];
+      value.userInfo = data[1];
       loading.style = "display:none";
+      console.log(value)
       userInfo.updateUserInfo(value.userInfo);
       avatar.updateAvatar(value.userInfo);
       cardList.render({ cards: value.cards, user: value.userInfo });

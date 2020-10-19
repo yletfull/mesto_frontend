@@ -30,7 +30,7 @@ export default class Api {
       })
       .then(data => {
         localStorage.setItem('token', data.token)
-    })
+    }).catch(err => console.log(err));
   }
 
   loginUser(){
@@ -45,13 +45,32 @@ export default class Api {
   }
 
 
+  updateUser(data) {
+    const { name, about, avatar } = data;
+    return fetch(`${this.baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({ name, about, avatar })
+    })
+    .then(res => {
+      return this.parseResponce(res)
+    })
+    .catch(err => {
+        console.log(err)
+    });
+  }
+
   getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
+      method: 'GET',
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`
       }
     })
-      .then(res => this.parseResponce(res))
+      .then(res => res.json())
+      .then(data => data.user)
       .catch(err => {
         throw err;
       });
@@ -59,6 +78,7 @@ export default class Api {
 
   getCards() {
     return fetch(`${this.baseUrl}/cards`, {
+      method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`,
       }
@@ -84,6 +104,52 @@ export default class Api {
       });
   }
 
+  setAvatar(data) {
+    return fetch(`${this.baseUrl}/users/me/avatar`,{
+      method:"PATCH",
+      headers:{
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => this.parseResponce(res))
+    .catch(err => {
+      throw err;
+    });
+  }
+
+  setUserInfo(data) {
+    return fetch(`${this.baseUrl}/users/me`,{
+      method:"PATCH",
+      headers:{
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => this.parseResponce(res))
+    .catch(err => {
+      throw err;
+    });
+  }
+
+  addCard(data) {
+    const { name, link } = data;
+    return fetch(`${this.baseUrl}/cards`, {
+      method:"POST",
+      headers: {
+        'Content-type': 'application/json;charset=utf-8',
+        'authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: JSON.stringify({name,link})
+    })
+      .then(res => this.parseResponce(res))
+      .catch(err => {
+        throw err;
+      });
+  }
+
   deleteCard(arg) {
     return fetch(`${this.baseUrl}/cards/${arg.id}`, {
       method: 'DELETE',
@@ -98,7 +164,7 @@ export default class Api {
   }
 
   likeAddRemove(arg) {
-    return fetch(`${this.baseUrl}/cards/like/${arg.id}`, {
+    return fetch(`${this.baseUrl}/cards/${arg.id}/likes`, {
       method: arg.method,
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`

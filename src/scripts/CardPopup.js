@@ -9,8 +9,8 @@ export default class CardPopup{
       event.preventDefault();
       this.popupOpenClose.loadingSet(button);
       this.cardList.addCard({name: this.placeName.value,link: this.link.value})
-        .then((card)=>{this.popupOpenClose.loadingEnd({button,form:this.popup})
-        .catch((err) => console.log(err));  });
+        .then(()=>{return this.popupOpenClose.loadingEnd({button,form:this.popup})
+          }).catch((err) => console.log(err))
     }
 };
 

@@ -16,16 +16,18 @@ export default class UserInfo {
   }
 
   setUserInfo(event, button) {
+    this.button = button,
     event.preventDefault();
-    const data = { name: this.nameInp.value, about: this.aboutInp.value, postfix: this.postfix, method: this.method };
+    const data = { name: this.nameInp.value, about: this.aboutInp.value };
     this.popupOpenClose.loadingSet(button);
-    this.api.editData(data)
-      .then((data) => { this.updateUserInfo(data) })
-      .then(() => { this.popupOpenClose.loadingEnd({ button, form: this.formEdit }); })
+    this.api.setUserInfo(data)
+      .then((data) => { this.updateUserInfo(data.data) })
+      .then(() => { this.popupOpenClose.loadingEnd({ button: this.button, form: this.formEdit }); })
       .catch((err) => console.log(err))
   }
 
   updateUserInfo(data) {
+    console.log(data.data)
     this.nameInp.value = data.name;
     this.aboutInp.value = data.about;
     this.name.textContent = data.name;
