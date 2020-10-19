@@ -14,7 +14,7 @@ export default class Api {
     return Promise.reject(`Что-то пошло не так: ${res.status}`);
   }
 
-  getToken(){
+  loginUser(){
     return fetch(`${this.baseUrl}/signin`, {
       method: 'POST',
         headers: {
@@ -29,21 +29,10 @@ export default class Api {
         return this.parseResponce(res)
       })
       .then(data => {
-        localStorage.setItem('token', data.token)
+        localStorage.setItem('token', data.token);
+        return 'Успешная авторизация';
     }).catch(err => console.log(err));
   }
-
-  loginUser(){
-    this.getToken();
-    return fetch(`${this.baseUrl}`, {
-      method: 'GET',
-      headers: {
-          authorization: `Bearer ${localStorage.getItem('token')}`
-      }  
-    })
-    .then(res => this.parseResponce(res))
-  }
-
 
   updateUser(data) {
     const { name, about, avatar } = data;

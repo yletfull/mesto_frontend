@@ -9,7 +9,6 @@ export default class CardList {
   render(data) {
     this.userId = data.user._id;
     this.cardArray = data.cards;
-    console.log(this.cardArray)
     this.cardArray.forEach(function (value) {
       value.userId = data.user._id;
         const card = this.createCard(value);

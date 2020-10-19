@@ -27,7 +27,6 @@ export default class UserInfo {
   }
 
   updateUserInfo(data) {
-    console.log(data.data)
     this.nameInp.value = data.name;
     this.aboutInp.value = data.about;
     this.name.textContent = data.name;
