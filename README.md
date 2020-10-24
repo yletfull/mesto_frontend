@@ -20,5 +20,7 @@ Define plugin.
 Style loader.
 Optimize CSS assets.
 
-## 6. Github pages  
-[Ссылка](https://yletfull.github.io/spr11/) 
+## 6. Ссылки
+[gh-pages](https://yletfull.github.io/spr11/) 
+[Ссылка](https://www.mesto-project.gq/) 
+[back-end](https://github.com/yletfull/mesto_api) 
