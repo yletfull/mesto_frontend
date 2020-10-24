@@ -4,7 +4,7 @@ Andrey Korlyakov
 ## 2. Актуальная версия  
 V 1.0.0  
 
-## 3. Описание спринта  
+## 3. Описание проекта
 Настройка webpack, для сборки проекта с применением минификации кода и поддержкой старых браузеров
 
 ## 4. Установка  
@@ -23,4 +23,4 @@ Optimize CSS assets.
 ## 6. Ссылки
 [gh-pages](https://yletfull.github.io/spr11/)  
 [back-end](https://github.com/yletfull/mesto_api)    
-[облачный сервер](https://www.mesto-project.gq/)   
+### [Итог](https://www.mesto-project.gq/)   
