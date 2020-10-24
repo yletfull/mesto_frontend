@@ -23,4 +23,4 @@ Optimize CSS assets.
 ## 6. Ссылки
 [gh-pages](https://yletfull.github.io/spr11/)  
 [back-end](https://github.com/yletfull/mesto_api)    
-### [Итог](https://www.mesto-project.gq/)   
+### [Ссылка на продакш проекта на облачном сервере](https://www.mesto-project.gq/)   
